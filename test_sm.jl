@@ -1,4 +1,6 @@
 using Dates
+using LibSerialPort
+
 
 function printc(key,val,max)
     colors =  [:green,
@@ -20,10 +22,14 @@ function printc(key,val,max)
 end
 
 
-sp = open("/home/abarth/p1.log","r")
+#sp = open("/home/abarth/p1.log","r")
+portname = "/dev/ttyUSB0"
+baudrate = 115200
+
+#sp = LibSerialPort.open(portname,baudrate, mode=SP_MODE_READ, parity=SP_PARITY_NONE)
 
 records = []
-power_consumption_max = 0.7
+power_consumption_max = 5.
 
 while true
     if eof(sp)
@@ -41,11 +47,11 @@ while true
 
     record = Dict{String,Union{Int,DateTime,Float64}}()
     meter1in = 0.0
-    power_consumption  = 0.0
+    power_consumption = 0.0
     power_injection  = 0.0
     line = readline(sp)
 
-    while !startswith(line,'!')
+    while !startswith(line,'!') && !startswith(line,'/')
         key,rest = split(line,'(',limit=2)
         val,rest = split(rest,')',limit=2)
 
