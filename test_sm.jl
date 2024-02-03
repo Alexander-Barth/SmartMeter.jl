@@ -26,7 +26,7 @@ end
 portname = "/dev/ttyUSB0"
 baudrate = 115200
 
-#sp = LibSerialPort.open(portname,baudrate, mode=SP_MODE_READ, parity=SP_PARITY_NONE)
+sp = LibSerialPort.open(portname,baudrate, mode=SP_MODE_READ, parity=SP_PARITY_NONE)
 
 records = []
 power_consumption_max = 5.
