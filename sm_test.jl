@@ -1,6 +1,6 @@
 using Dates
 using LibSerialPort
-
+using SQLite
 
 function printc(key,val,max)
     colors =  [:green,
