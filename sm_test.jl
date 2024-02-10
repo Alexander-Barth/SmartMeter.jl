@@ -1,6 +1,6 @@
 using Dates
 using LibSerialPort
-using SQLite
+#using SQLite
 
 function printc(key,val,max)
     colors =  [:green,
@@ -89,7 +89,8 @@ while true
     push!(records,record)
 
     #for line in split(lines)
-    printc("power consumption ",power_consumption,power_consumption_max)
+    #printc("power consumption ",power_consumption,power_consumption_max)
+    println("""{"consumption": $power_consumption, "injection": $power_injection}""")
 end
 
 
